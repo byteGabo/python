@@ -35,6 +35,7 @@ def EnterMove(board):
         break
 
 def MakeListOfFreeFields(board):
+    global free_square
     free_square = []
     
     for row in range(0,3):
@@ -73,6 +74,17 @@ def VictoryFor(board, sign):
             print('Player', sign, 'es el ganador!!!!')
     else:
         print('No hay un Ganador todavia, sigue jugando')
+        
+def DrawMove(board):
+    while True:
+        row = randrange(3)
+        column = randrange(3)
+        
+        if ([row], [column]) not in free_square:
+            continue
+        else:
+            board[row][column] = 'X'
+            return
 
 board = [['1', '2', '3'], ['4', 'X', '6'], ['7', '8', '9']]
 numberOfMoves = 1
@@ -86,5 +98,7 @@ DisplayBoard(board)
 MakeListOfFreeFields(board)
 VictoryFor(board,human)
 VictoryFor(board,computer)
+DrawMove(board)
+DisplayBoard(board)
 
 
