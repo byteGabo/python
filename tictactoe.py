@@ -1,6 +1,6 @@
 from random import randrange
 
-board = [['1', '2', '3'], ['4', 'X', '6'], ['7', '8', '9']]
+
 
 def DisplayBoard (board):
     print('+-------+-------+-------+')
@@ -47,13 +47,44 @@ def MakeListOfFreeFields(board):
     print(free_square)
     
 def VictoryFor(board, sign):
-    pass    
+    
+    print('Buscando si el jugador', sign, 'es el ganador')
+    
+    #FILAS
+    if board[0][0] == sign and board[0][1] == sign and board[0][2] == sign:
+            print('Player', sign, 'es el ganador!!!!')
+    elif board[1][0] == sign and board[1][1] == sign and board[1][2] == sign:
+            print('Player', sign, 'es el ganador!!!!')
+    elif board[2][0] == sign and board[2][1] == sign and board[2][2] == sign:
+            print('Player', sign, 'is win!!!!')
+            
+    #COLUMNAS        
+    elif board[0][0] == sign and board[1][0] == sign and board[2][0] == sign:
+            print('Player', sign, 'es el ganador!!!!')
+    elif board[0][1] == sign and board[1][1] == sign and board[2][1] == sign:
+            print('Player', sign, 'es el ganador!!!!')
+    elif board[0][2] == sign and board[1][2] == sign and board[2][2] == sign:
+            print('Player', sign, 'es el ganador!!!!')
+            
+    #DIAGONALES        
+    elif board[0][0] == sign and board[1][1] == sign and board[2][2] == sign:
+            print('Player', sign, 'es el ganador!!!!')
+    elif board[0][2] == sign and board[1][1] == sign and board[2][0] == sign:
+            print('Player', sign, 'es el ganador!!!!')
+    else:
+        print('No hay un Ganador todavia, sigue jugando')
+
+board = [['1', '2', '3'], ['4', 'X', '6'], ['7', '8', '9']]
+numberOfMoves = 1
+human = 'O'
+computer = 'X'
 
 
 DisplayBoard(board)
 EnterMove(board)
 DisplayBoard(board)
 MakeListOfFreeFields(board)
-
+VictoryFor(board,human)
+VictoryFor(board,computer)
 
 
