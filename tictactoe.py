@@ -1,7 +1,5 @@
 from random import randrange
 
-
-
 def DisplayBoard (board):
     print('+-------+-------+-------+')
     print('|       |       |       |')
@@ -49,29 +47,32 @@ def MakeListOfFreeFields(board):
     
 def VictoryFor(board, sign):
     
-    print('Buscando si el jugador', sign, 'es el ganador')
-    
+    if sign == 'O':
+        print('buscando si tu eres el ganador...')
+    else:
+        print('Buscando si la computadora gano el juego...')
+       
     #FILAS
     if board[0][0] == sign and board[0][1] == sign and board[0][2] == sign:
-            print('Player', sign, 'es el ganador!!!!')
+            return True
     elif board[1][0] == sign and board[1][1] == sign and board[1][2] == sign:
-            print('Player', sign, 'es el ganador!!!!')
+            return True
     elif board[2][0] == sign and board[2][1] == sign and board[2][2] == sign:
-            print('Player', sign, 'is win!!!!')
+            return True
             
     #COLUMNAS        
     elif board[0][0] == sign and board[1][0] == sign and board[2][0] == sign:
-            print('Player', sign, 'es el ganador!!!!')
+            return True
     elif board[0][1] == sign and board[1][1] == sign and board[2][1] == sign:
-            print('Player', sign, 'es el ganador!!!!')
+            return True
     elif board[0][2] == sign and board[1][2] == sign and board[2][2] == sign:
-            print('Player', sign, 'es el ganador!!!!')
+            return True
             
     #DIAGONALES        
     elif board[0][0] == sign and board[1][1] == sign and board[2][2] == sign:
-            print('Player', sign, 'es el ganador!!!!')
+            return True
     elif board[0][2] == sign and board[1][1] == sign and board[2][0] == sign:
-            print('Player', sign, 'es el ganador!!!!')
+            return True
     else:
         print('No hay un Ganador todavia, sigue jugando')
         
@@ -91,14 +92,46 @@ numberOfMoves = 1
 human = 'O'
 computer = 'X'
 
+print('Hola Bienvenido al juego tres en raya')
+DisplayBoard(board)
+print()
 
-DisplayBoard(board)
-EnterMove(board)
-DisplayBoard(board)
-MakeListOfFreeFields(board)
-VictoryFor(board,human)
-VictoryFor(board,computer)
-DrawMove(board)
-DisplayBoard(board)
+while numberOfMoves < 9:
+    EnterMove(board)
+    numberOfMoves += 1
+    DisplayBoard(board)
+    
+    if VictoryFor(board, human) == True:
+        print('Rompiste la computadora, tu eres una gran humano')
+        break
+    else:
+        print('Aqui esta la lista de casillas vacias: ')
+        MakeListOfFreeFields(board)
+        print()
+        DisplayBoard(board)
+    
+    print()
+    print("es turno de la X")
+    DrawMove(board)
+    numberOfMoves += 1
+    DisplayBoard(board)
+    print()
+    
+    if VictoryFor(board, computer) == True:
+        print('La computadora es mas inteligente que tu')
+        break
+    else:
+        print('Aqui esta la lista de casillas vacias: ')
+        MakeListOfFreeFields(board)
+        print()
+        DisplayBoard(board)
+else:
+    print('Es un EMPATE!')
+    
+
+print('¡Gracias Por Jugar!')
+    
+    
+
 
 
